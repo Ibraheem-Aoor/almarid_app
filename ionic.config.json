@@ -1,0 +1,7 @@
+{
+  "name": "Almared",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

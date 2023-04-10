@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-refresher dir="ltr" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="bubbles">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="logo" text-center>
+    <img src="assets/imgs/logo.png" alt="logo" />
+  </div>
+
+  <!-- search Button -->
+  <div class="search" *ngIf="lang == 'ar'" [hidden]= "type == 'a'">
+    <button ion-button block color="light" icon-end (click)="goToSearch()">
+      ابحث عن سيارة <ion-icon name="search"></ion-icon>
+    </button>
+  </div>
+  <div class="search" *ngIf="lang == 'ar'" [hidden]= "type != 'a'">
+    <button ion-button block color="light" icon-end (click)="goToSearch()">
+      ابحث عن اكسسوار <ion-icon name="search"></ion-icon>
+    </button>
+  </div>
+  <div class="search-en" *ngIf="lang == 'en'">
+    <button ion-button block color="light" icon-end (click)="goToSearch()">
+      Search <ion-icon name="search"></ion-icon>
+    </button>
+  </div>
+  <!-- img1 -->
+  <div [class]="lang == 'ar' ? 'card card-ar' : 'card card-en'" *ngFor="let car of cars"
+    (click)="goToDetails(car.id, car.image)">
+    <div class="img">
+      <img src="{{ car.image }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+    </div>
+    <div class="text">
+      <p class="model">
+        {{ car.model_name }}
+      </p>
+      <p *ngIf="lang == 'ar'" class="type">
+        {{ car.name }}
+      </p>
+      <p *ngIf="lang == 'en'" class="type">
+        {{ car.name_en }}
+      </p>
+      <p *ngIf="car.is_offer" class="price">
+        <span class="discount">{{car.price}}
+          <!--<span class="coin">{{coin}}</span> --></span>
+        {{car.offer_price}} <span class="coin">{{coin}}</span>
+      </p>
+      <p *ngIf="!car.is_offer" class="price">
+        {{car.price}} <span class="coin">{{coin}}</span>
+      </p>
+      <p *ngIf="lang === 'ar'" class="count">
+        <span *ngIf="car.quantity !== '0'">متبقي {{ car.quantity }} سيارات</span>
+        <span *ngIf="car.quantity === '0'">نفذت الكمية</span>
+      </p>
+      <p *ngIf="lang === 'en'" class="count">
+        <span *ngIf="car.quantity !== '0'">remains {{ car.quantity }} cars</span>
+        <span *ngIf="car.quantity === '0'">Out of Stock</span>
+      </p>
+    </div>
+    <span *ngIf="lang == 'ar' && car.is_offer" class="flag">عرض</span>
+    <span *ngIf="lang == 'en' && car.is_offer" class="flag">offer</span>
+    <span *ngIf="lang == 'ar' && car.is_new" class="flag" style="background-color: #0f0a3c;">
+      جديد
+    </span>
+    <span *ngIf="lang == 'en' && car.is_new" class="flag" style="background-color: #0f0a3c;">
+      new
+    </span>
+  </div>
+  <!-- img1 -->
+</ion-content>

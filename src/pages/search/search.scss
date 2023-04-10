@@ -1,0 +1,273 @@
+page-search {
+  .content {
+    background-color: #f6f7f9;
+  }
+  span.coin {
+    font-size: 12px;
+  }
+
+  ion-item {
+    border: 1px solid #ccc !important;
+  }
+  .item-inner {
+    border-bottom: none !important;
+  }
+  .dir-rtl {
+    direction: rtl !important;
+  }
+
+  .dir-ltr {
+    direction: ltr !important;
+  }
+  //  search bar Style ******************/
+
+
+  .ar .searchbar-input {
+    border-radius: 20px !important;
+    border-radius: 10px !important;
+    padding: 10px !important;
+    text-align: right;
+  }
+  .ar .searchbar-search-icon {
+    font-size: 2rem !important;
+    background-size: 24px;
+    right: 90% !important;
+    top: 15px !important;
+  }
+
+  .en .searchbar-input {
+    border-radius: 20px !important;
+    border-radius: 10px !important;
+    padding: 10px !important;
+    text-align: left;
+  }
+  .en .searchbar-search-icon {
+    font-size: 2rem !important;
+    background-size: 24px;
+    left: 90% !important;
+    top: 15px !important;
+  }
+  /************/
+  /********** Style arabic range *************/
+  .range-ar .item {
+    height: 65px;
+    padding: 0px 17px !important;
+    border-radius: 20px;
+  }
+  .range-ar .range {
+    padding: 0px;
+  }
+  .range-ar ion-label {
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    padding: 0px 10px;
+    left: 10px !important;
+    margin: 0 15px -15px 0 !important;
+  }
+  .range-ar .range-slider {
+    direction: ltr;
+    margin-right: 15px;
+  }
+
+  .range-ar .range-slider .range-bar {
+    left: 0px;
+    top: 25px;
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background: #f0f0f0;
+    pointer-events: none;
+  }
+
+  .range-ar .range-knob-handle {
+    width: 21px !important;
+  }
+
+  .range-ar .range-bar-active {
+    background-color: #ff5e3a !important;
+    width: auto !important;
+  }
+
+  .range-ar .range-pin {
+    margin-left: -30px;
+    padding-top: 2px !important;
+    transform: translate3d(0, 0, 0) scale(1) !important;
+    border-radius: 20px !important;
+    padding: 0px 8px !important;
+    font-size: 15px !important;
+  }
+
+  .range-ar .range-knob {
+    right: 12px;
+    top: 21px !important;
+    border: 3px solid #fff;
+    box-shadow: 0px 0px 10px 8px #d0d0d0;
+    background: #fff !important;
+  }
+
+  /*************** Style English Range ***************/
+  .range-en .item {
+    height: 65px;
+    border-radius: 20px;
+    padding: 0px 17px;
+  }
+  .range-en ion-label {
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    padding: 0px 10px;
+  }
+  .range-en .range-slider {
+    //margin-right: 15px;
+  }
+  .range-en .range-slider .range-bar {
+    top: 17px;
+    height: 10px;
+  }
+  .range-en .range-knob-handle {
+    width: 21px !important;
+  }
+  .range-en .range-bar-active {
+    background-color: #ff5e3a !important;
+    width: auto !important;
+  }
+  .range-en .range-pin {
+    margin-left: -8px;
+    padding-top: 2px !important;
+    transform: translate3d(0, 0, 0) scale(1) !important;
+    border-radius: 20px !important;
+    padding: 0px 8px !important;
+    font-size: 15px !important;
+  }
+  .range-en .range-knob {
+    top: 13px !important;
+    border: 3px solid #fff;
+    box-shadow: 0px 0px 10px 8px #d0d0d0;
+    background: #fff !important;
+  }
+
+  /**************/
+  .range-pin::before {
+    display: none;
+  }
+  /*************** Style Scroll ***************/
+  .top-ar h3 {
+    float: right;
+    font-size: 19px;
+    color: #080d2d;
+    margin-top: 15px !important;
+    margin-bottom: 0;
+  }
+  .top-en h3 {
+    float: left;
+    font-size: 19px;
+    color: #080d2d;
+    margin-top: 15px !important;
+    margin-bottom: 0;
+  }
+  .custom_scrollx {
+    width: max-content;
+  }
+  .custom_scrollx ion-scroll#slide-ar {
+    direction: rtl;
+  }
+  .custom_scrollx ion-scroll#slide-en {
+    direction: ltr;
+  }
+
+  // active
+
+  .custom_scrollx .active {
+    border: 2px solid #ff5e3a !important;
+    position: relative;
+  }
+
+  .custom_scrollx .active ion-icon {
+    display: inline;
+    color: #ff5e3a;
+    font-size: 30px;
+    position: absolute;
+    left: 3px;
+    top: 1px;
+  }
+
+  .btn {
+    padding: 30px 0px;
+  }
+
+  /////////////////////////
+  .radio {
+    margin: 0 20px !important;
+  }
+  .radio ion-item {
+    position: relative;
+    width: 120px;
+    height: 173px;
+    background-color: #fff;
+    border-radius: 20px;
+    text-align: center;
+    padding-top: 15px;
+    float: right;
+    border-radius: 20px !important;
+    margin: 0px 5px !important;
+  }
+  .radio ion-item.mid {
+    height: 120px;
+  }
+  .radio ion-item.mid img {
+    max-width: 60px;
+    max-height: 60px;
+  }
+
+  .radio ion-item .radio-icon {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: transparent;
+    top: 10px;
+    left: 10px !important;
+    right: auto !important;
+    border-color: transparent;
+    visibility: visible !important;
+  }
+
+  .radio .input-wrapper {
+    overflow: visible;
+  }
+  .radio ion-label {
+    margin-top: 35px !important;
+    width: 90px !important;
+  }
+
+  .radio ion-item.mid .label {
+    margin: 10px 0px 0px 0 !important;
+  }
+  .radio-checked {
+    border-color: #ff1016 !important;
+    background-color: #ff1016 !important;
+  }
+  .radio-inner {
+    background-color: transparent !important;
+  }
+
+  .radio-inner:before {
+    content: "\f2bc" !important;
+    font-family: Ionicons;
+    overflow: hidden;
+    color: #ffffff;
+    position: absolute;
+    font-size: 14px;
+    top: 0px;
+    left: 2px;
+    @include rtl() {
+      left: -4px;
+    }
+  }
+
+  .searchbar-ios .searchbar-search-icon {
+    background-size: 14px !important;
+  }
+  .searchbar-ios input.searchbar-input {
+    height: 45px !important;
+  }
+}

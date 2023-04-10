@@ -1,0 +1,260 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center *ngIf="lang == 'ar'">البحث والفلترة</ion-title>
+    <ion-title text-center *ngIf="lang == 'en'">Search and Filtering</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- Search bar -->
+  <div class="ar" *ngIf="lang == 'ar'" [hidden]= "type == 'a'">
+    <ion-searchbar
+      [(ngModel)]="name"
+      [showCancelButton]="shouldShowCancel"
+      (keyup.Enter)="search()"
+      placeholder="ابحث عن سيارة"
+    >
+    </ion-searchbar>
+  </div>
+
+  <div class="ar" *ngIf="lang == 'ar'" [hidden]= "type != 'a'">
+    <ion-searchbar
+      [(ngModel)]="name"
+      [showCancelButton]="shouldShowCancel"
+      (keyup.Enter)="search()"
+      placeholder="ابحث عن اكسسوار"
+    >
+    </ion-searchbar>
+  </div>
+
+  <div class="en" *ngIf="lang == 'en'">
+    <ion-searchbar
+      [(ngModel)]="name"
+      [showCancelButton]="shouldShowCancel"
+      (keyup.Enter)="search()"
+      placeholder="Search"
+    >
+    </ion-searchbar>
+  </div>
+
+  <!-- Price Range -->
+  <h3 *ngIf="lang == 'ar'">
+    السعر <span class="coin">بالدرهم الإماراتي</span>
+  </h3>
+  <h3 *ngIf="lang == 'en'">Price <span class="coin">AED</span></h3>
+  <div class="price" *ngIf="lang == 'ar'">
+    <div class="range-ar">
+      <ion-list>
+        <ion-item>
+          <ion-range dualKnobs="true" min="{{minPrice}}" max="{{maxPrice}}" [(ngModel)]="structure">
+            <ion-label range-right>{{structure.lower}}</ion-label>
+            <ion-label range-left>{{structure.upper}}</ion-label>
+          </ion-range>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+  <!-- english range -->
+  <div class="price" *ngIf="lang == 'en'">
+    <div class="range-en">
+      <ion-list>
+        <ion-item>
+          <ion-range dualKnobs="true" min="{{minPrice}}" max="{{maxPrice}}" [(ngModel)]="structure">
+            <ion-label range-left>{{structure.lower}}</ion-label>
+            <ion-label range-right>{{structure.upper}}</ion-label>
+          </ion-range>
+
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+  <!-- Accessories types -->
+<div *ngIf="type == 'a'">
+  <div [class]="lang == 'ar' ? 'top-ar' : 'top-en'">
+    <h3 *ngIf="lang == 'ar'">
+      أنواع الاكسسوارات
+    </h3>
+    <h3 *ngIf="lang == 'en'">
+      Accessories Types
+    </h3>
+  </div>
+  <ion-scroll
+  delegate-handle="mainScroll"
+  scrollX="true"
+  style="overflow:hidden;height: 190px;width: 100%;display: block;"
+  [class]="lang == 'ar' ? 'dir-rtl scroll-x' : 'dir-ltr scroll-x'"
+>
+  <ion-list class="radio custom_scrollx" radio-group>
+    <ion-item
+      *ngFor="let item of cars"
+      [ngClass]="{'active': car == item.id}"
+    >
+      <ion-label>
+        <img
+          src="{{ item.image }}"
+          onerror="this.onerror=null;this.src='assets/imgs/logo.png';"
+        />
+        <p *ngIf="lang == 'ar'" class="text">{{item.name}}</p>
+        <p *ngIf="lang == 'en'" class="text">{{item.name_en}}</p>
+      </ion-label>
+      <ion-radio
+        [checked]="car == item.id"
+        (ionSelect)="carSelect(item.id)"
+      ></ion-radio>
+    </ion-item>
+  </ion-list>
+</ion-scroll>
+</div>
+  <!-- cars type -->
+<div *ngIf="type != 'a'">
+  <div [class]="lang == 'ar' ? 'top-ar' : 'top-en'">
+    <h3 *ngIf="lang == 'ar'">
+      أنواع السيارات
+    </h3>
+    <h3 *ngIf="lang == 'en'">
+      Cars Types
+    </h3>
+  </div>
+  <ion-scroll
+    delegate-handle="mainScroll"
+    scrollX="true"
+    style="overflow:hidden;height: 190px;width: 100%;display: block;"
+    [class]="lang == 'ar' ? 'dir-rtl scroll-x' : 'dir-ltr scroll-x'"
+  >
+    <ion-list class="radio custom_scrollx" radio-group>
+      <ion-item
+        *ngFor="let item of cars"
+        [ngClass]="{'active': car == item.id}"
+      >
+        <ion-label>
+          <img
+            src="{{ item.image }}"
+            onerror="this.onerror=null;this.src='assets/imgs/logo.png';"
+          />
+          <p *ngIf="lang == 'ar'" class="text">{{item.name}}</p>
+          <p *ngIf="lang == 'en'" class="text">{{item.name_en}}</p>
+        </ion-label>
+        <ion-radio
+          [checked]="car == item.id"
+          (ionSelect)="carSelect(item.id)"
+        ></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-scroll>
+
+  <!-- Options -->
+  <div [class]="lang == 'ar' ? 'top-ar' : 'top-en'">
+    <h3 *ngIf="lang == 'ar'">
+      الوقود
+    </h3>
+    <h3 *ngIf="lang == 'en'">
+      Feul
+    </h3>
+  </div>
+  <ion-scroll
+    delegate-handle="mainScroll"
+    scrollX="true"
+    style="overflow:hidden;height: 190px;width: 100%;display: block;"
+    [class]="lang == 'ar' ? 'dir-rtl scroll-x' : 'dir-ltr scroll-x'"
+  >
+    <ion-list class="radio custom_scrollx" radio-group>
+      <ion-item
+        *ngFor="let item of options"
+        [ngClass]="{'active': option == item.id}"
+      >
+        <ion-label>
+          <img
+            src="{{ item.image }}"
+            onerror="this.onerror=null;this.src='item.category_image';"
+          />
+          <p *ngIf="lang == 'ar'" class="text">{{item.name}}</p>
+          <p *ngIf="lang == 'en'" class="text">{{item.name_en}}</p>
+        </ion-label>
+        <ion-radio
+          [checked]="option == item.id"
+          (ionSelect)="optionSelect(item.id)"
+        ></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-scroll>
+
+  <!-- Models -->
+  <div [class]="lang == 'ar' ? 'top-ar' : 'top-en'">
+    <h3 *ngIf="lang == 'ar'">
+      الموديل
+    </h3>
+    <h3 *ngIf="lang == 'en'">
+      Model
+    </h3>
+  </div>
+  <ion-scroll
+    delegate-handle="mainScroll"
+    scrollX="true"
+    style="overflow:hidden;height: 136px;width: 100%;display: block;"
+    [class]="lang == 'ar' ? 'dir-rtl scroll-x' : 'dir-ltr scroll-x'"
+  >
+    <ion-list class="radio custom_scrollx" radio-group>
+      <ion-item
+        class="mid"
+        *ngFor="let item of models"
+        [ngClass]="{'active': model == item.id}"
+      >
+        <ion-label>
+          <h1 text-center>{{item.name}}</h1>
+        </ion-label>
+        <ion-radio
+          [checked]="model == item.id"
+          (ionSelect)="modelSelect(item.id)"
+        ></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-scroll>
+  <!-- Company -->
+  <div [class]="lang == 'ar' ? 'top-ar' : 'top-en'">
+    <h3 *ngIf="lang == 'ar'">
+      الشركة
+    </h3>
+    <h3 *ngIf="lang == 'en'">
+      Company
+    </h3>
+  </div>
+  <ion-scroll
+    delegate-handle="mainScroll"
+    scrollX="true"
+    style="overflow:hidden;height: 136px;width: 100%;display: block;"
+    [class]="lang == 'ar' ? 'dir-rtl scroll-x' : 'dir-ltr scroll-x'"
+  >
+    <ion-list class="radio custom_scrollx" radio-group>
+      <ion-item
+        class="mid"
+        *ngFor="let item of brands"
+        [ngClass]="{'active': brand == item.id}"
+      >
+        <ion-label>
+          <img
+            src="{{ item.image }}"
+            onerror="this.onerror=null;this.src='assets/imgs/logo.png';"
+          />
+        </ion-label>
+        <ion-radio
+          [checked]="brand == item.id"
+          (ionSelect)="brandSelect(item.id)"
+        ></ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-scroll>
+</div>
+  <br />
+  <br />
+
+  <div class="btn">
+    <button ion-button block *ngIf="lang == 'ar'" (click)="search()">
+      بحث
+    </button>
+    <button ion-button block *ngIf="lang == 'en'" (click)="search()">
+      Search
+    </button>
+  </div>
+</ion-content>

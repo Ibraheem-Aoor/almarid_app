@@ -1,0 +1,159 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf="lang == 'ar'" text-center>دليل المستخدم</ion-title>
+    <ion-title *ngIf="lang == 'en'" text-center>User Guide</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!--  -->
+  <div padding>
+    <ion-segment [(ngModel)]="section">
+      <ion-segment-button value="guides">
+        <span *ngIf="lang == 'ar'">دليل المستخدم</span>
+        <span *ngIf="lang == 'en'">User Guide</span>
+      </ion-segment-button>
+      <ion-segment-button value="faq">
+        <span *ngIf="lang == 'ar'">أسئلة شائعة</span>
+        <span *ngIf="lang == 'en'">FAQ's</span>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="section">
+    <ion-list *ngSwitchCase="'faq'">
+      <div class="aboutBox">
+        <ion-list style="margin-top: 10px;">
+          <ion-card *ngFor="let faq of faqsitem; let i = index">
+            <ion-item
+              (click)="toggleGroup(i)"
+              [ngClass]="{ active: isGroupShown(i) }"
+            >
+              <h2 text-wrap>
+                {{ faq.question }}
+                <ion-icon
+                  color="success"
+                  item-right
+                  [style.left]="lang == 'ar' ? '10px' : 'auto'"
+                  [style.right]="lang == 'en' ? '10px' : 'auto'"
+                  [name]="isGroupShown(i) ? 'remove' : 'add'"
+                ></ion-icon>
+              </h2>
+              <div
+                *ngIf="isGroupShown(i)"
+                style="color:#fff; background-color: #0f0a3c;"
+                text-wrap
+              >
+                <p [innerHTML]="faq.answer"></p>
+              </div>
+            </ion-item>
+          </ion-card>
+        </ion-list>
+      </div>
+    </ion-list>
+    <!-- faq segments
+    <ion-list *ngSwitchCase="'faq'" class="faq">
+
+      <div>
+        <ion-scroll
+          delegate-handle="mainScroll"
+          scrollX="true"
+          style="overflow:scroll;height: 70px;width: 100%;display: block;"
+          [class]="lang == 'ar' ? 'dir-rtl scroll-x' : 'dir-ltr scroll-x'"
+        >
+          <ion-segment class="custom_scrollx" [(ngModel)]="faqs">
+            <ion-segment-button
+              *ngFor="let faqcat of faqCats"
+              value="{{faqcat.id}}"
+            >
+              <span *ngIf="lang == 'ar'">{{faqcat.name}} </span>
+              <span *ngIf="lang == 'en'">{{faqcat.name_en}} </span>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-scroll>
+      </div>
+
+      <div [ngSwitch]="faqs">
+        <ion-list *ngFor="let faqcat of faqCats">
+          <div class="aboutBox" *ngSwitchCase="faqcat.id">
+            <ion-list style="margin-top: 10px;">
+              <div *ngFor="let allitem of faqsitem; let i = index">
+                <ion-card *ngIf="allitem.category_id == faqcat.id">
+                  <ion-item
+                    (click)="toggleGroup(i)"
+                    [ngClass]="{ active: isGroupShown(i) }"
+                  >
+                    <h2 text-wrap>
+                      {{ allitem.question }}
+                      <ion-icon
+                        color="success"
+                        item-right
+                        [style.left]="lang == 'ar' ? '10px' : 'auto'"
+                        [style.right]="lang == 'en' ? '10px' : 'auto'"
+                        [name]="isGroupShown(i) ? 'remove' : 'add'"
+                      ></ion-icon>
+                    </h2>
+                    <div
+                      *ngIf="isGroupShown(i)"
+                      style="color:#fff; background-color: #0f0a3c;"
+                      text-wrap
+                    >
+                      {{ allitem.answer }}
+                    </div>
+                  </ion-item>
+                </ion-card>
+              </div>
+            </ion-list>
+          </div>
+        </ion-list>
+      </div>
+    </ion-list>
+     end faq segments -->
+    <ion-list *ngSwitchCase="'guides'">
+      <div class="aboutBox">
+        <ion-list style="margin-top: 10px;">
+          <ion-card *ngFor="let guide of guideitems; let i = index">
+            <ion-item
+              (click)="toggleGroup(i)"
+              [ngClass]="{ active: isGroupShown(i) }"
+            >
+              <h2 text-wrap>
+                {{ guide.name }}
+                <ion-icon
+                  color="success"
+                  item-right
+                  [style.left]="lang == 'ar' ? '10px' : 'auto'"
+                  [style.right]="lang == 'en' ? '10px' : 'auto'"
+                  [name]="isGroupShown(i) ? 'remove' : 'add'"
+                ></ion-icon>
+              </h2>
+              <div
+                *ngIf="isGroupShown(i)"
+                style="color:#fff; background-color: #0f0a3c;"
+                text-wrap
+              >
+                <img
+                  *ngIf="guide.file_type === 'IMAGE'"
+                  src="{{ guide.file }}"
+                  onerror="this.onerror=null;this.src='assets/imgs/logo.png';"
+                />
+                <div class="youtube" *ngIf="guide.file_type === 'YOUTUBE'">
+                  <!-- <iframe src="{{ guide.file }}"></iframe> -->
+                  <p class="go-youtube" (click)="goToYoutube(guide.file)">
+                    {{ guide.file }}
+                  </p>
+                </div>
+                <div class="video" *ngIf="guide.file_type === 'VIDEO'">
+                  <video width="400" controls>
+                    <source src="{{ guide.file }}" type="video/mp4" />
+                  </video>
+                </div>
+                <p [innerHTML]="guide.text"></p>
+              </div>
+            </ion-item>
+          </ion-card>
+        </ion-list>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

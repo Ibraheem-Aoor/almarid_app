@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar> </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <p class="order">#{{ number }}</p>
+  <div class="progress">
+    <ul class="progress-bar-ar" *ngIf="lang == 'ar'">
+      <li class="active"></li>
+      <li [class]="process > 1 ? 'active' : ''"></li>
+      <li [class]="process > 2 ? 'active' : ''"></li>
+    </ul>
+    <ul class="progress-bar-en" *ngIf="lang == 'en'">
+      <li class="active"></li>
+      <li [class]="process > 1 ? 'active' : ''"></li>
+      <li [class]="process > 2 ? 'active' : ''"></li>
+    </ul>
+  </div>
+
+  <div class="img">
+    <img
+      src="{{ image }}"
+      onerror="this.onerror=null;this.src='assets/imgs/order1.png';"
+    />
+  </div>
+
+  <p class="text">{{ name }}</p>
+
+  <div class="btns" *ngIf="lang == 'ar'">
+    <button ion-button block icon-start (click)="call()">
+      <ion-icon name="call"></ion-icon> اتصال
+    </button>
+    <button
+      ion-button
+      block
+      class="whats"
+      icon-start
+      (click)="contactWhatsApp()"
+    >
+      <ion-icon name="logo-whatsapp"></ion-icon> واتس أب
+    </button>
+  </div>
+  <div class="btns" *ngIf="lang == 'en'">
+    <button ion-button block icon-start (click)="call()">
+      <ion-icon name="call"></ion-icon> Call
+    </button>
+    <button
+      ion-button
+      block
+      class="whats"
+      icon-start
+      (click)="contactWhatsApp()"
+    >
+      <ion-icon name="logo-whatsapp"></ion-icon> WhatsApp
+    </button>
+  </div>
+</ion-content>

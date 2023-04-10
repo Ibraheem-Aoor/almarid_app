@@ -1,0 +1,33 @@
+
+<ion-content padding>
+  <div class="img">
+    <img src="assets/imgs/333.png" alt="lang" />
+  </div>
+  <div class="text">
+    <h3 class="ar">اختر القسم</h3>
+    <h3 class="en">choose your section</h3>
+  </div>
+  <div class="lang">
+    <div class="ar">
+      <button ion-button block (click)="goToWelcome('c')">
+          <span *ngIf="lang == 'ar'">
+             السيارات
+          </span>
+          <span *ngIf="lang == 'en'">
+            Cars
+          </span>
+      </button>
+    </div>
+
+    <div class="en">
+      <button ion-button block (click)="goToWelcome('a')">
+        <span *ngIf="lang == 'ar'">
+         الاكسسوارات
+        </span>
+        <span *ngIf="lang == 'en'">
+          Accessories
+        </span>
+      </button>
+    </div>
+  </div>
+</ion-content>

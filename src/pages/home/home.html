@@ -1,0 +1,335 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher dir="ltr" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="bubbles">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="logo" text-center>
+    <img src="assets/imgs/logo.png" />
+  </div>
+
+
+  <!-- Slider of cars -->
+  <div class="sec1 main-slider" *ngIf="type != 'a'">
+    <ion-slides pager="true" dir="rtl" *ngIf="lang == 'ar'">
+      <!-- slid 1 -->
+      <ion-slide *ngFor="let slide of carSlides">
+        <ion-card>
+          <img src="{{ slide.file }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+          <!-- <img
+            *ngIf="slide.type == 'IMAGE'"
+            src="{{ slide.file }}"
+            onerror="this.onerror=null;this.src='assets/imgs/logo.png';"
+          /> -->
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+    <!-- English Slider -->
+    <ion-slides pager="true" dir="ltr" *ngIf="lang == 'en'">
+      <!-- slid 1 -->
+      <ion-slide *ngFor="let slide of carSlides">
+        <ion-card>
+          <!-- <img
+            *ngIf="slide.type == 'PRODUCT'"
+            (click)="goToDetails(slide.product_id)"
+            src="{{ slide.file }}"
+            onerror="this.onerror=null;this.src='assets/imgs/logo.png';"
+          /> -->
+          <img src="{{ slide.file }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <!-- Slider of Accessories-->
+  <div class="sec1" *ngIf="type == 'a'">
+    <ion-slides pager="true" dir="rtl" *ngIf="lang == 'ar'">
+      <!-- slid 1 -->
+      <ion-slide *ngFor="let slide of accessorySlides">
+        <ion-card>
+          <img src="{{ slide.file }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+    <!-- English Slider -->
+    <ion-slides pager="true" dir="ltr" *ngIf="lang == 'en'">
+      <!-- slid 1 -->
+      <ion-slide *ngFor="let slide of accessorySlides">
+        <ion-card>
+          <img src="{{ slide.file }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <!-- search Button -->
+  <div class="search" *ngIf="lang == 'ar'" [hidden]="type == 'a'">
+    <button ion-button block color="light" icon-end (click)="goToSearch()">
+      ابحث عن سيارة <ion-icon name="search"></ion-icon>
+    </button>
+  </div>
+  <div class="search-en" *ngIf="lang == 'en'">
+    <button ion-button block color="light" icon-end (click)="goToSearch()">
+      Search <ion-icon name="search"></ion-icon>
+    </button>
+  </div>
+  <!-- search accessories -->
+  <div class="search" *ngIf="lang == 'ar'" [hidden]="type != 'a'">
+    <button ion-button block color="light" icon-end (click)="goToSearch()">
+      ابحث عن اكسسوار <ion-icon name="search"></ion-icon>
+    </button>
+  </div>
+  <!-- Top latest offers-->
+  <div class="top" *ngIf="lang == 'ar'">
+    <h3>آخر العروض</h3>
+    <span (click)="goToCars('offers', '1')">المزيد</span>
+  </div>
+  <div class="top-en" *ngIf="lang == 'en'">
+    <h3>Latest Offers</h3>
+    <span (click)="goToCars('offers', '1')">More</span>
+  </div>
+  <ion-scroll delegate-handle="mainScroll" scrollX="true"
+    style="overflow:hidden;height: 140px;width: 100%;display: block;" [class]="lang == 'ar' ? 'dir-rtl' : 'dir-ltr'">
+    <div class="custom_scrollx">
+      <!-- cars -->
+      <div [class]="lang == 'ar' ? 'card card-ar' : 'card card-en'" *ngFor="let item of items.offers"
+        (click)="goToDetails(item.id, item.image)" [hidden]="type == 'a'">
+        <div class="img">
+          <img src="{{ item.image }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+        </div>
+        <div class="text">
+          <p class="model">
+            {{item.model_name}}
+          </p>
+          <p *ngIf="lang == 'ar'" class="type">
+            {{item.name}}
+          </p>
+          <p *ngIf="lang == 'en'" class="type">
+            {{item.name_en}}
+          </p>
+          <p *ngIf="item.is_offer" class="price">
+            <span class="discount">{{item.price}}</span> {{item.offer_price}} <span class="coin">{{coin}}</span>
+          </p>
+          <p *ngIf="!item.is_offer" class="price">{{item.price}} <span class="coin">{{coin}}</span></p>
+          <p *ngIf="lang === 'ar'" class="count">
+            <span *ngIf="item.quantity !== '0'">متبقي {{item.quantity}} سيارات</span>
+            <span *ngIf="item.quantity === '0'">نفذت الكمية</span>
+          </p>
+          <p *ngIf="lang === 'en'" class="count">
+            <span *ngIf="item.quantity !== '0'">remains {{item.quantity}} cars</span>
+            <span *ngIf="item.quantity === '0'">Out of Stock</span>
+          </p>
+        </div>
+        <span *ngIf="lang == 'ar'" class="flag">عرض</span>
+        <span *ngIf="lang == 'en'" class="flag">offer</span>
+      </div>
+      <!-- accessories -->
+      <div [class]="lang == 'ar' ? 'card card-ar' : 'card card-en'" *ngFor="let item of items.accessoriesOffers"
+        (click)="goToDetails(item.id, item.image)" [hidden]="type != 'a'">
+        <div class="img">
+          <img src="{{ item.image }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+        </div>
+        <div class="text">
+          <p *ngIf="lang == 'ar'" class="type">
+            {{item.name}}
+          </p>
+          <p *ngIf="lang == 'en'" class="type">
+            {{item.name_en}}
+          </p>
+          <p *ngIf="item.is_offer" class="price">
+            <span class="discount">{{item.price}}</span> {{item.offer_price}} <span class="coin">{{coin}}</span>
+          </p>
+          <p *ngIf="!item.is_offer" class="price">{{item.price}} <span class="coin">{{coin}}</span></p>
+          <p *ngIf="lang === 'ar'" class="count">
+            <span *ngIf="item.quantity !== '0'">متبقي {{item.quantity}} قطع</span>
+            <span *ngIf="item.quantity === '0'">نفذت الكمية</span>
+          </p>
+          <p *ngIf="lang === 'en'" class="count">
+            <span *ngIf="item.quantity !== '0'">remains {{item.quantity}} pieces</span>
+            <span *ngIf="item.quantity === '0'">Out of Stock</span>
+          </p>
+        </div>
+        <span *ngIf="lang == 'ar'" class="flag">عرض</span>
+        <span *ngIf="lang == 'en'" class="flag">offer</span>
+      </div>
+    </div>
+  </ion-scroll>
+
+  <!-- Top latest Cars-->
+  <div class="top" *ngIf="lang == 'ar'">
+    <h3 *ngIf="type != 'a'">آخر السيارات</h3>
+    <h3 *ngIf="type == 'a'">آخر الاكسسوارات</h3>
+    <span (click)="goToCars('latest', '1')">المزيد</span>
+  </div>
+  <div class="top-en" *ngIf="lang == 'en'">
+    <h3 *ngIf="type != 'a'">Latest Cars</h3>
+    <h3 *ngIf="type == 'a'">Latest Accessories</h3>
+    <span (click)="goToCars('latest', '1')">More</span>
+  </div>
+
+  <ion-scroll delegate-handle="mainScroll" scrollX="true"
+    style="overflow:hidden;height: 140px;width: 100%;display: block;" [class]="lang == 'ar' ? 'dir-rtl' : 'dir-ltr'">
+    <div class="custom_scrollx">
+      <!-- cars -->
+      <div [class]="lang == 'ar' ? 'card card-ar' : 'card card-en'" *ngFor="let item of items.latest"
+        (click)="goToDetails(item.id, item.image)" [hidden]="type == 'a'">
+        <div class="img">
+          <img src="{{ item.image }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+        </div>
+        <div class="text">
+          <p class="model">
+            {{item.model_name}}
+          </p>
+          <p *ngIf="lang == 'ar'" class="type">
+            {{item.name}}
+          </p>
+          <p *ngIf="lang == 'en'" class="type">
+            {{item.name_en}}
+          </p>
+          <p class="price">{{item.price}} <span class="coin">{{coin}}</span></p>
+          <p *ngIf="lang === 'ar'" class="count">
+            <span *ngIf="item.quantity !== '0'">متبقي {{item.quantity}} سيارات</span>
+            <span *ngIf="item.quantity === '0'">نفذت الكمية</span>
+          </p>
+          <p *ngIf="lang === 'en'" class="count">
+            <span *ngIf="item.quantity !== '0'">remains {{item.quantity}} cars</span>
+            <span *ngIf="item.quantity === '0'">Out of Stock</span>
+          </p>
+        </div>
+        <span *ngIf="lang == 'ar'" class="flag" style="background-color: #0f0a3c;">
+          جديد
+        </span>
+        <span *ngIf="lang == 'en'" class="flag" style="background-color: #0f0a3c;">
+          new
+        </span>
+      </div>
+      <!-- accessories -->
+      <div [class]="lang == 'ar' ? 'card card-ar' : 'card card-en'" *ngFor="let item of items.latestAccessories"
+        (click)="goToDetails(item.id, item.image)" [hidden]="type != 'a'">
+        <div class="img">
+          <img src="{{ item.image }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+        </div>
+        <div class="text">
+          <p *ngIf="lang == 'ar'" class="type">
+            {{item.name}}
+          </p>
+          <p *ngIf="lang == 'en'" class="type">
+            {{item.name_en}}
+          </p>
+          <p class="price">{{item.price}} <span class="coin">{{coin}}</span></p>
+          <p *ngIf="lang === 'ar'" class="count">
+            <span *ngIf="item.quantity !== '0'">متبقي {{item.quantity}} قطع</span>
+            <span *ngIf="item.quantity === '0'">نفذت الكمية</span>
+          </p>
+          <p *ngIf="lang === 'en'" class="count">
+            <span *ngIf="item.quantity !== '0'">remains {{item.quantity}} pieces</span>
+            <span *ngIf="item.quantity === '0'">Out of Stock</span>
+          </p>
+        </div>
+        <span *ngIf="lang == 'ar'" class="flag" style="background-color: #0f0a3c;">
+          جديد
+        </span>
+        <span *ngIf="lang == 'en'" class="flag" style="background-color: #0f0a3c;">
+          new
+        </span>
+      </div>
+    </div>
+  </ion-scroll>
+  <!-- accessories type -->
+  <div *ngIf="type == 'a'">
+    <div class="top" *ngIf="lang == 'ar'">
+      <h3>أنواع الاكسسوارات</h3>
+    </div>
+    <div class="top-en" *ngIf="lang == 'en'">
+      <h3>Accessories Types</h3>
+    </div>
+    <ion-scroll delegate-handle="mainScroll" scrollX="true"
+      style="overflow:hidden;height: 190px;width: 100%;display: block;" [class]="lang == 'ar' ? 'dir-rtl' : 'dir-ltr'">
+      <div class="custom_scrollx">
+        <div [class]="
+            lang == 'ar'
+              ? 'model-option model-option-ar'
+              : 'model-option model-option-en'
+          " *ngFor="let item of items.accessoriesCategory" (click)="goToCars('cat',item.id)">
+          <img src="{{ item.image }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+          <p *ngIf="lang == 'ar'" class="text">{{item.name}}</p>
+          <p *ngIf="lang == 'en'" class="text">{{item.name_en}}</p>
+        </div>
+      </div>
+    </ion-scroll>
+  </div>
+  <!-- cars type -->
+  <div class="car-sections" *ngIf="type != 'a'">
+    <div class="top" *ngIf="lang == 'ar'">
+      <h3>أنواع السيارات</h3>
+    </div>
+    <div class="top-en" *ngIf="lang == 'en'">
+      <h3>Cars Types</h3>
+    </div>
+    <ion-scroll delegate-handle="mainScroll" scrollX="true"
+      style="overflow:hidden;height: 190px;width: 100%;display: block;" [class]="lang == 'ar' ? 'dir-rtl' : 'dir-ltr'">
+      <div class="custom_scrollx">
+        <div [class]="
+          lang == 'ar'
+            ? 'model-option model-option-ar'
+            : 'model-option model-option-en'
+        " *ngFor="let item of items.categories" (click)="goToCars('cat',item.id)">
+          <img src="{{ item.image }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+          <p *ngIf="lang == 'ar'" class="text">{{item.name}}</p>
+          <p *ngIf="lang == 'en'" class="text">{{item.name_en}}</p>
+        </div>
+      </div>
+    </ion-scroll>
+
+    <!-- Models -->
+    <div class="top" *ngIf="lang == 'ar'">
+      <h3>الموديل</h3>
+    </div>
+    <div class="top-en" *ngIf="lang == 'en'">
+      <h3>Model</h3>
+    </div>
+    <ion-scroll delegate-handle="mainScroll" scrollX="true"
+      style="overflow:hidden;height: 130px;width: 100%;display: block;" [class]="lang == 'ar' ? 'dir-rtl' : 'dir-ltr'">
+      <div class="custom_scrollx">
+        <div [class]="
+          lang == 'ar' ? 'model-year model-year-ar' : 'model-year model-year-en'
+        " *ngFor="let item of items.models" (click)="goToCars('mod', item.id)">
+          <h1 text-center>{{item.name}}</h1>
+        </div>
+      </div>
+    </ion-scroll>
+    <!-- Company -->
+    <div class="top" *ngIf="lang == 'ar'">
+      <h3>الشركة</h3>
+    </div>
+    <div class="top-en" *ngIf="lang == 'en'">
+      <h3>Company</h3>
+    </div>
+    <ion-scroll delegate-handle="mainScroll" scrollX="true"
+      style="overflow:hidden;height: 130px;width: 100%;display: block;" [class]="lang == 'ar' ? 'dir-rtl' : 'dir-ltr'">
+      <div class="custom_scrollx">
+        <div [class]="
+          lang == 'ar'
+            ? 'model-company model-company-ar'
+            : 'model-company model-company-en'
+        " *ngFor="let item of items.brands" (click)="goToCars('com', item.id)">
+          <p>
+            <img src="{{ item.image }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+          </p>
+        </div>
+      </div>
+    </ion-scroll>
+  </div>
+  <br />
+  <br />
+  <img src="assets/imgs/visamaster.png" style="display: block;
+    margin: 0 auto;
+    width: 200px;" />
+
+  <br />
+  <br />
+</ion-content>

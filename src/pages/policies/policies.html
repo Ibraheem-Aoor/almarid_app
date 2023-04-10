@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf="lang == 'en'" text-center>Terms and Conditions</ion-title>
+    <ion-title *ngIf="lang == 'ar'" text-center>الشروط والأحكام</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div [innerHTML]="content"></div>
+</ion-content>

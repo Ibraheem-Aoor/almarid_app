@@ -1,0 +1,39 @@
+
+<ion-content padding>
+  <div class="status">
+    <div class="ico">
+      <ion-icon name="checkmark-circle"></ion-icon>
+    </div>
+  </div>
+
+  <div class="img">
+    <img
+      src="{{ image }}"
+      onerror="this.onerror=null;this.src='assets/imgs/logo.png';"
+    />
+  </div>
+  <div class="text">
+    <h3>{{ name }}</h3>
+    <p *ngIf="lang == 'ar'">تمت عملية الدفع بنجاح</p>
+    <p *ngIf="lang == 'ar'">رقم طلبك هو</p>
+    <p *ngIf="lang == 'en'">Your payment was successful</p>
+    <p *ngIf="lang == 'en'">Your order number</p>
+    <p class="number">{{ number }}</p>
+  </div>
+  <div *ngIf="lang == 'ar'" class="btns">
+    <button ion-button block (click)="goToOrder()" class="follow">
+      تتبع الطلب
+    </button>
+    <button ion-button block (click)="goToMain()">
+      <ion-icon name="home"></ion-icon> &nbsp; &nbsp; عودة للرئيسية
+    </button>
+  </div>
+  <div *ngIf="lang == 'en'" class="btns">
+    <button ion-button block (click)="goToOrder()" class="follow">
+      Trace Your Order
+    </button>
+    <button ion-button block (click)="goToMain()">
+      <ion-icon name="home"></ion-icon> &nbsp; &nbsp; Back To Home
+    </button>
+  </div>
+</ion-content>

@@ -1,0 +1,196 @@
+page-reserve-info {
+  .content {
+    background-color: #f6f7f9;
+  }
+
+  ion-input{
+    -webkit-transform: translateZ(0px) !important;
+  }
+
+  .progress {
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  .progress ul {
+    padding-right: 0px !important;
+  }
+  // arabic progress bar //
+  .progress-bar-ar {
+    counter-reset: step;
+  }
+
+  .progress-bar-ar li {
+    list-style-type: none;
+    float: right;
+    width: 33.33%;
+    position: relative;
+    text-align: center;
+  }
+
+  .progress-bar-ar li::after {
+    content: counter(step);
+    counter-increment: step;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #ddd;
+    color: #fff;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+  }
+
+  .progress-bar-ar li::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background-color: #fff;
+    top: 0px;
+    right: -50%;
+    z-index: -1;
+  }
+
+  .progress-bar-ar li:first-child:before {
+    content: none;
+  }
+
+  .progress-bar-ar li.active:after {
+    background-color: #ff5e3a;
+  }
+
+  .progress-bar-ar li.active::before {
+    background-color: #ff5e3a;
+  }
+
+  // english progress bar //
+  .progress-bar-en {
+    counter-reset: step;
+    margin-left: -13%;
+  }
+  .progress-bar-en li {
+    list-style-type: none;
+    float: left;
+    width: 33.33%;
+    position: relative;
+    text-align: center;
+  }
+
+  .progress-bar-en li::before {
+    content: counter(step);
+    counter-increment: step;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #ddd;
+    color: #fff;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+  }
+
+  .progress-bar-en li::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background-color: #fff;
+    top: 0px;
+    right: 50%;
+    z-index: -1;
+  }
+
+  .progress-bar-en li:first-child:after {
+    content: none;
+  }
+
+  .progress-bar-en li.active:before {
+    background-color: #ff5e3a;
+  }
+
+  .progress-bar-en li.active::after {
+    background-color: #ff5e3a;
+  }
+
+  // layout //
+
+  ion-grid.btns {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+  }
+
+  .text {
+    text-align: center;
+    font-size: 25px;
+  }
+  .info {
+    .item {
+      background-color: transparent !important;
+    }
+    ion-label {
+      color: #221d4b !important;
+    }
+    #map {
+      height: 300px;
+      border: 1px solid #ff5e3a;
+    }
+  }
+  .details {
+    .img img {
+      width: 100%;
+    }
+
+    .item {
+      background-color: transparent;
+    }
+
+    .item ion-icon {
+      background-color: #ff5e3a;
+      padding: 5px;
+      color: #fff;
+      border-radius: 5px;
+      width: 30px;
+      height: 30px;
+      font-size: 20px !important;
+    }
+  }
+
+  .pay {
+    .textt {
+      text-align: center;
+      font-size: 15px;
+    }
+
+    .img {
+      text-align: center;
+    }
+
+    .item {
+      background-color: transparent !important;
+    }
+    .btn {
+      text-align: center;
+    }
+    .btn-dis {
+      background-color: #ccc;
+      color: #999;
+    }
+  }
+
+  .coin {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .wait {
+    text-align: center;
+  }
+
+  /************** foter ***************/
+  .footer-md::before {
+    background-image: none !important;
+  }
+}

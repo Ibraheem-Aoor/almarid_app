@@ -1,0 +1,261 @@
+<ion-header>
+  <ion-navbar> </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="progress">
+    <ul class="progress-bar-ar" *ngIf="lang == 'ar'">
+      <li class="active"></li>
+      <li [class]="process > 1 ? 'active' : ''"></li>
+      <li [class]="process > 2 ? 'active' : ''"></li>
+    </ul>
+    <ul class="progress-bar-en" *ngIf="lang == 'en'">
+      <li class="active"></li>
+      <li [class]="process > 1 ? 'active' : ''"></li>
+      <li [class]="process > 2 ? 'active' : ''"></li>
+    </ul>
+  </div>
+  <div class="info" *ngIf="process == 1">
+    <p *ngIf="lang == 'ar'" class="text">
+      بيانات صاحب الحجز
+    </p>
+    <p *ngIf="lang == 'en'" class="text">
+      Your Information
+    </p>
+    <ion-list>
+      <ion-item>
+        <ion-label *ngIf="lang == 'ar'" floating>
+          <ion-icon name="ios-person-outline"></ion-icon>&nbsp; &nbsp; الاسم الأول *
+        </ion-label>
+        <ion-label *ngIf="lang == 'en'" floating>
+          <ion-icon name="ios-person-outline"></ion-icon>&nbsp; &nbsp; First Name
+          *
+        </ion-label>
+        <ion-input [(ngModel)]="name" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label *ngIf="lang == 'ar'" floating>
+          <ion-icon name="ios-person-outline"></ion-icon>&nbsp; &nbsp; اسم العائلة *
+        </ion-label>
+        <ion-label *ngIf="lang == 'en'" floating>
+          <ion-icon name="ios-person-outline"></ion-icon>&nbsp; &nbsp; Last Name
+          *
+        </ion-label>
+        <ion-input [(ngModel)]="lname" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label *ngIf="lang == 'ar'" floating>
+          <ion-icon name="ios-call-outline"></ion-icon>&nbsp; &nbsp; رقم الجوال
+          *
+        </ion-label>
+        <ion-label *ngIf="lang == 'en'" floating>
+          <ion-icon name="ios-call-outline"></ion-icon>&nbsp; &nbsp; Phone
+          number *
+        </ion-label>
+        <ion-input [(ngModel)]="phone" type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label *ngIf="lang == 'ar'" floating>
+          <ion-icon name="ios-mail-outline"></ion-icon>&nbsp; &nbsp; الايميل *
+        </ion-label>
+        <ion-label *ngIf="lang == 'en'" floating>
+          <ion-icon name="ios-mail-outline"></ion-icon>&nbsp; &nbsp; Email *
+        </ion-label>
+        <ion-input [(ngModel)]="email" type="email"></ion-input>
+      </ion-item>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10>
+            <ion-item>
+              <ion-label *ngIf="lang == 'ar'" floating>
+                <ion-icon name="ios-map-outline"></ion-icon>&nbsp; &nbsp;
+                العنوان *
+              </ion-label>
+              <ion-label *ngIf="lang == 'en'" floating>
+                <ion-icon name="ios-map-outline"></ion-icon>&nbsp; &nbsp;
+                Address *
+              </ion-label>
+              <ion-input [(ngModel)]="address" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col col-2>
+            <button
+              style="margin-top: 100%;"
+              ion-button
+              icon-only
+              color="secondary"
+              (click)="loadMap()"
+            >
+              <ion-icon name="ios-locate-outline"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <br />
+      <div id="map" #map *ngIf="viewMap"></div>
+    </ion-list>
+    <br />
+  </div>
+  <div class="details" *ngIf="process == 2">
+    <p *ngIf="lang == 'ar'" class="text">
+      تأكيد البيانات
+    </p>
+    <p *ngIf="lang == 'en'" class="text">
+      Confirm Your Information
+    </p>
+    <div class="img">
+      <img
+        src="{{ image }}"
+        onerror="this.onerror=null;this.src='assets/imgs/logo.png';"
+      />
+    </div>
+
+    <ion-list>
+      <ion-item>
+        <ion-icon name="car" item-start></ion-icon>
+        {{car_name}}
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="person" item-start></ion-icon>
+        {{ name }} {{lname}}
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="call" item-start></ion-icon>
+        {{ phone }}
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="mail" item-start></ion-icon>
+        {{ email }}
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="map" item-start></ion-icon>
+        {{ address }}
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="ios-locate-outline" item-start></ion-icon>
+        {{ lat }},{{ lng }}
+      </ion-item>
+    </ion-list>
+    <br />
+    <br />
+  </div>
+<div class="pay" *ngIf="process == 3">
+    <p *ngIf="lang == 'ar'" class="text">
+      بيانات الدفع
+    </p>
+    <p *ngIf="lang == 'en'" class="text">
+      Payment Information
+    </p>
+    <div class="img">
+      <img src="assets/imgs/visa.png" alt="car" />
+    </div>
+
+    <div class="btn">
+      <button *ngIf="lang == 'ar'" ion-button class="btn-dis">
+        مبلغ الحجز {{car_deposit}} <span class="coin">{{coin}}</span>
+      </button>
+      <button *ngIf="lang == 'en'" ion-button class="btn-dis">
+        Booking amount {{car_deposit}} <span class="coin">{{coin}}</span>
+      </button>
+    </div>
+    <p *ngIf="lang == 'ar'" class="textt">
+      يتم تحديد مبلغ الحجز بشكل تلقائي بناءً على سعر المنتج
+    </p>
+    <p *ngIf="lang == 'en'" class="textt">
+      The reservation amount is determined automatically based on the product price
+    </p>
+    <br />
+    <br />
+    <p *ngIf="lang == 'ar'" class="wait" [hidden] = "showWait">
+      يرجى الانتظار حتى يتم تأكيد الطلب <ion-spinner name="dots"></ion-spinner>
+    </p>
+    <p *ngIf="lang == 'en'" class="wait" [hidden] = "showWait">
+      Please wait until the order is confirmed <ion-spinner name="dots"></ion-spinner>
+    </p>
+  </div>
+</ion-content>
+<ion-footer padding>
+  <ion-toolbar *ngIf="process == 1">
+    <button *ngIf="lang == 'ar'" ion-button block (click)="goToCar()">
+      التالي
+    </button>
+    <button *ngIf="lang == 'en'" ion-button block (click)="goToCar()">
+      Next
+    </button>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="process == 2">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <button
+            *ngIf="lang == 'ar'"
+            ion-button
+            block
+            (click)="goToInfo()"
+            color="secondary"
+          >
+            السابق
+          </button>
+          <button
+            *ngIf="lang == 'en'"
+            ion-button
+            block
+            (click)="goToInfo()"
+            color="secondary"
+          >
+            Previous
+          </button>
+        </ion-col>
+        <ion-col col-6>
+          <button *ngIf="lang == 'ar'" ion-button block (click)="goToPay()">
+            التالي
+          </button>
+          <button *ngIf="lang == 'en'" ion-button block (click)="goToPay()">
+            Next
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="process == 3">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <button
+            *ngIf="lang == 'ar'"
+            ion-button
+            block
+            (click)="goToCar()"
+            color="secondary"
+          >
+            السابق
+          </button>
+          <button
+            *ngIf="lang == 'en'"
+            ion-button
+            block
+            (click)="goToCar()"
+            color="secondary"
+          >
+            Previous
+          </button>
+        </ion-col>
+        <ion-col col-6>
+          <button *ngIf="lang == 'ar'" ion-button block (click)="goToSuccess()">
+            ادفع الان {{car_deposit}} <span class="coin">{{coin}}</span>
+          </button>
+          <button *ngIf="lang == 'en'" ion-button block (click)="goToSuccess()">
+            Pay Now {{car_deposit}} <span class="coin">{{coin}}</span>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

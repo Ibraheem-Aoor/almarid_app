@@ -1,0 +1,15 @@
+<ion-tabs name="event" >
+  <ion-tab [root]="tab1Root" tabTitle="{{ root1 }}" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="{{ root2 }}" tabIcon="{{icon2}}"></ion-tab>
+  <ion-tab
+    (ionSelect)="morePage()"
+    tabTitle="{{ root3 }}"
+    tabIcon="md-list"
+  ></ion-tab>
+  <ion-tab
+    [root]="tab4Root"
+    tabTitle="{{ root4 }}"
+    tabIcon="search"
+    style="color: #ff5e3a;"
+  ></ion-tab>
+</ion-tabs>

@@ -1,0 +1,161 @@
+page-cars {
+  .content,.toolbar-background {
+    background-color: #f6f7f9 !important;
+  }
+  .scroll-content {
+    top: -10px;
+  }
+  .logo {
+    padding: 10px;
+  }
+  .logo img {
+    height: 45px;
+  }
+
+  //  search bar Style ******************/
+  .search button {
+    border-radius: 15px !important;
+    background-color: #fff;
+    color: #999;
+    padding: 15px 5px 35px 5px !important;
+  }
+
+  .search button ion-icon {
+    position: fixed;
+    top: 15px;
+    left: 10px;
+    color: #444;
+    transform: rotateY(180deg);
+    font-size: 35px;
+  }
+
+  .search button span.button-inner {
+    display: inline-block;
+    text-align: right !important;
+    padding: 0px 10px;
+    font-size: 17px;
+  }
+  // english search
+  .search-en button {
+    border-radius: 15px !important;
+    background-color: #fff;
+    color: #999;
+    padding: 15px 5px 30px 5px !important;
+  }
+
+  .search-en button ion-icon {
+    position: fixed;
+    top: 12px;
+    right: 15px;
+    color: #444;
+    font-size: 30px;
+  }
+
+  .search-en button span.button-inner {
+    display: inline-block;
+    text-align: left !important;
+    padding: 0px 10px;
+    font-size: 17px;
+  }
+
+  //  card Style ******************/
+
+  .card {
+    width: 100%;
+    height: 120px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 10px 0px;
+    padding: 5px 10px 5px 5px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-ar {
+    float: right;
+  }
+  .card-en {
+    float: left;
+  }
+
+  .card .flag {
+    position: absolute;
+    background-color: #ff5e3a;
+    display: inline-block;
+    padding: 8px;
+    top: 0px;
+    color: #fff;
+  }
+  .card-ar .flag {
+    left: 1px;
+    border-top-left-radius: 10px;
+  }
+  .card-en .flag {
+    right: 1px;
+    border-top-right-radius: 10px;
+  }
+
+  .card .img {
+    max-width: 145px;
+    height: 105px;
+    display: inline-block;
+    border-radius: 20px;
+    background-color: #ebeefb;
+    margin: 2px;
+  }
+  .card-ar .img {
+    float: right;
+    margin-left: 10px;
+  }
+  .card-en .img {
+    float: left;
+    margin-right: 10px;
+  }
+  .card .img img {
+    height: 100%;
+    padding: 5px;
+    border-radius: 20px;
+  }
+
+  .card .text {
+    width: 140px;
+    display: inline-block;
+    margin-top: 12px;
+  }
+  .card-ar .text {
+    float: right;
+  }
+  .card-en .text {
+    float: left;
+  }
+  .card .text p {
+    margin: 0;
+    margin-top: -5px;
+  }
+
+  .card .text p.model {
+    color: #d5d6db;
+  }
+
+  .card .text .type {
+    font-size: 1.7rem;
+    font-weight: bold;
+    white-space: nowrap;
+    width: 80%;
+    overflow: hidden;
+  }
+
+  .card .text .price .discount {
+    color: #ff5e3a;
+    text-decoration: line-through;
+  }
+
+  .card .text p.count {
+    color: #b0b0b0;
+    font-size: 12px;
+  }
+
+  .card .coin {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+}

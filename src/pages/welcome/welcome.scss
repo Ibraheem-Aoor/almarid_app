@@ -1,0 +1,32 @@
+page-welcome {
+  .img {
+    margin: 100px 50px 20px 50px;
+    text-align: center;
+  }
+
+  .img img {
+    width: 100%;
+  }
+
+  .text h2 {
+    text-align: center;
+  }
+
+  .text p {
+    text-align: center;
+    font-size: 15px;
+    padding: 0px 20px;
+  }
+
+  .btn {
+    position: fixed;
+    bottom: 5%;
+    left: 5%;
+    width: 90%;
+  }
+
+  .btn button {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+}

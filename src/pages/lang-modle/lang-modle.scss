@@ -1,0 +1,45 @@
+page-lang-modle {
+  .content {
+    background-color: #f6f7f9;
+  }
+  .text {
+    padding: 20px 0px;
+  }
+
+  .text .ar {
+    text-align: center;
+    color: #0f0a3c;
+  }
+  .text .en {
+    text-align: center;
+    color: #e0e0e0;
+  }
+
+  .lang div {
+    width: 50%;
+    float: right;
+  }
+
+  .lang button {
+    width: 100px !important;
+    height: 100px !important;
+    font-weight: 400 !important;
+    font-size: 20px !important;
+    border-radius: 15px !important;
+    margin: 10px !important;
+  }
+  .lang .ar button {
+    background-color: #ff5e3a;
+    float: left;
+  }
+  .lang .en button {
+    background-color: #e0e0e0;
+    color: #0f0a3c !important;
+    float: right;
+  }
+
+  .cancel {
+    color: #888;
+    border: none;
+  }
+}

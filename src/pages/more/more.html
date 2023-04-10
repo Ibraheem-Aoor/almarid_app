@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <button ion-button block (click)="goToPolitics()">
+          <ion-icon name="briefcase"></ion-icon>
+        </button>
+        <p *ngIf="lang == 'ar'">الشروط والأحكام</p>
+        <p *ngIf="lang == 'en'">Terms and Conditions</p>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button block (click)="goToFAQ()">
+          <ion-icon name="book"></ion-icon>
+        </button>
+        <p *ngIf="lang == 'ar'">دليل المستخدم</p>
+        <p *ngIf="lang == 'en'">User Guide</p>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button block (click)="goTolangModel()">
+          <ion-icon name="ios-globe-outline"></ion-icon>
+        </button>
+        <p *ngIf="lang == 'ar'">اللغة</p>
+        <p *ngIf="lang == 'en'">Language</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>
+        <button ion-button block (click)="shareApp()">
+          <ion-icon name="share"></ion-icon>
+        </button>
+        <p *ngIf="lang == 'ar'">مشاركة التطبيق</p>
+        <p *ngIf="lang == 'en'">Share App</p>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button block (click)="goToContact()">
+          <ion-icon name="ios-contacts"></ion-icon>
+        </button>
+        <p *ngIf="lang == 'ar'">تواصل معنا</p>
+        <p *ngIf="lang == 'en'">Contact Us</p>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button block  icon-only (click)="goToSectionModal()">
+          <!-- <ion-icon name="swap"></ion-icon> -->
+          <img src="assets/imgs/333.png" alt="lang"/>
+        </button>
+        <p *ngIf="lang == 'ar'">القسم</p>
+        <p *ngIf="lang == 'en'">The Section</p>
+        <!-- <button
+          ion-button
+          block
+          style="background-color: #7ad06d !important;"
+          (click)="contactWhatsApp()"
+        >
+          <ion-icon name="logo-whatsapp"></ion-icon>
+        </button>
+        <p *ngIf="lang == 'ar'">واتس أب</p>
+        <p *ngIf="lang == 'en'">WhatsApp</p> -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <button
+    ion-button
+    block
+    outline
+    class="cancel"
+    (click)="dismiss()"
+    *ngIf="lang == 'ar'"
+  >
+    إلغاء
+  </button>
+  <button
+    ion-button
+    block
+    outline
+    class="cancel"
+    (click)="dismiss()"
+    *ngIf="lang == 'en'"
+  >
+    Cancel
+  </button>
+</ion-content>

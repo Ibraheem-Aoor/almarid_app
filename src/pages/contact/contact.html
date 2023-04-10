@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf="lang == 'ar'" text-center>
+      تواصل معنا
+    </ion-title>
+    <ion-title *ngIf="lang == 'en'" text-center>
+      Contact Us
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="info">
+    <ion-item>
+      <ion-icon ios="ios-call" md="md-call"></ion-icon>
+      {{ phone }}
+    </ion-item>
+    <ion-item>
+      <ion-icon ios="ios-mail" md="md-mail"></ion-icon>
+      {{ email }}
+    </ion-item>
+    <ion-item>
+      <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+      {{ times }}
+    </ion-item>
+  </ion-list>
+  <div class="map"><div id="map" #map></div></div>
+
+  <div class="log">
+    <img src="assets/imgs/logo.png" />
+  </div>
+
+  <div class="ico" style="text-align: center;padding: 20px;">
+    <ion-icon name="logo-facebook" (click)="openBrowser(facebook)"></ion-icon>
+    <ion-icon name="logo-twitter" (click)="openBrowser(twitter)"></ion-icon>
+    <ion-icon name="logo-instagram" (click)="openBrowser(instagram)"></ion-icon>
+    <ion-icon name="logo-whatsapp" (click)="contactWhatsApp()" style="color: #fff; background-color: #7ad06d;"></ion-icon>
+  </div>
+</ion-content>

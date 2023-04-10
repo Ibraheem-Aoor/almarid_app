@@ -1,0 +1,48 @@
+<ion-content padding>
+  <div class="img">
+    <img src="assets/imgs/order1.png" alt="order" />
+  </div>
+  <!-- Arabic Fields -->
+  <ion-list *ngIf="lang == 'ar'">
+    <ion-item>
+      <ion-input
+        type="number"
+        placeholder="أدخل رقم الطلب"
+        [(ngModel)]="tracking"
+      ></ion-input>
+    </ion-item>
+    <br />
+    <ion-item>
+      <ion-input
+        type="email"
+        placeholder="أدخل الإيميل"
+        [(ngModel)]="email"
+      ></ion-input>
+    </ion-item>
+  </ion-list>
+  <!-- English Fields -->
+  <ion-list *ngIf="lang == 'en'">
+    <ion-item>
+      <ion-input
+        type="number"
+        placeholder="Enter Your Order Number"
+        [(ngModel)]="tracking"
+      ></ion-input>
+    </ion-item>
+    <br />
+    <ion-item>
+      <ion-input
+        type="email"
+        placeholder="Enter Your Email"
+        [(ngModel)]="email"
+      ></ion-input>
+    </ion-item>
+  </ion-list>
+  <br />
+  <button *ngIf="lang == 'ar'" ion-button block (click)="orderStatus()">
+    تتبع الطلب
+  </button>
+  <button *ngIf="lang == 'en'" ion-button block (click)="orderStatus()">
+    Trace Your Order
+  </button>
+</ion-content>

@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="
+          share(
+            '',
+            'subject',
+            carImage,
+            'https://apps.apple.com/us/app/almarid/id1541183433'
+          )
+        ">
+        <ion-icon name="share"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div *ngFor="let car of cars">
+    <div class="sec1">
+      <!-- arabic slide -->
+      <!-- <ion-slides pager="true" dir="rtl" *ngIf="lang == 'ar'">
+        <ion-slide *ngFor="let image of car.images; let i = index">
+          <ion-card>
+            <img src="{{ image.image }}" (click)="openGallery(i)"/>
+          </ion-card>
+        </ion-slide>
+      </ion-slides> -->
+      <!-- English Slide -->
+      <ion-slides pager="true" dir="ltr">
+        <ion-slide *ngFor="let image of car.images; let i = index">
+          <ion-card>
+            <img src="{{ image.image }}" (click)="openGallery(i)"/>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+      <div class="car-details">
+        <h2 *ngIf="lang == 'en'">
+          {{ car.name_en }}
+        </h2>
+        <h2 *ngIf="lang == 'ar'">
+          {{ car.name }}
+        </h2>
+        <p *ngIf="!car.is_offer">
+          <span class="price">
+            {{ car.price }}&nbsp;<span class="coin">{{coin}}</span>
+          </span>
+        </p>
+        <p *ngIf="car.is_offer">
+          <span class="price">
+            {{ car.offer_price }}&nbsp;<span class="coin">{{coin}}</span>
+          </span>
+          &nbsp;&nbsp;
+          <span class="offer-price">
+            {{ car.price }}&nbsp;<span class="coin">{{coin}}</span>
+          </span>
+        </p>
+        <ion-scroll delegate-handle="mainScroll" scrollX="true"
+          style="overflow:hidden;height: 67px;width: 100%;display: block;">
+          <ion-list class="radio" radio-group [(ngModel)]="color">
+            <ion-item *ngFor="let color of car.colors" style.background-color="{{color.color.code}}">
+              <ion-label></ion-label>
+              <ion-radio value="{{color.color_id}}"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
+      </div>
+    </div>
+
+    <div class="img-details" *ngIf="type != 'a'">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4 *ngFor="let option of car.options">
+            <div class="img">
+              <img *ngIf="option.type == 'select'" src="{{ option.option.image }}"
+                onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+              <img *ngIf="option.type == 'text'" src="{{ option.optioncategory.image }}"
+                onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+            </div>
+            <div class="text" *ngIf="option.type == 'select'">
+              <h3 *ngIf="lang == 'ar'">
+                {{ option.option.category_name_ar }}
+              </h3>
+              <h3 *ngIf="lang == 'en'">
+                {{ option.option.category_name_en }}
+              </h3>
+              <p *ngIf="lang == 'ar'">{{ option.option.name }}</p>
+              <p *ngIf="lang == 'en'">{{ option.option.name_en }}</p>
+            </div>
+            <div class="text" *ngIf="option.type == 'text'">
+              <h3 *ngIf="lang == 'ar'">
+                {{ option.optioncategory.name }}
+              </h3>
+              <h3 *ngIf="lang == 'en'">
+                {{ option.optioncategory.name_en }}
+              </h3>
+              <p *ngIf="lang == 'ar'">{{ option.other }}</p>
+              <p *ngIf="lang == 'en'">{{ option.other }}</p>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <br/>
+    <div class="details">
+      <h2 *ngIf="lang == 'ar'">التفاصيل</h2>
+      <h2 *ngIf="lang == 'en'">Details</h2>
+      <p *ngIf="lang == 'ar'" [innerHTML]="car.description"></p>
+      <p *ngIf="lang == 'en'" [innerHTML]="car.description_en"></p>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar padding>
+    <button *ngIf="lang == 'ar'" ion-button block (click)="goToReserve(car.quantity)">
+      <span [hidden]="type == 'a'">احجزها الآن</span>
+      <span [hidden]="type != 'a'">اشتر الآن</span>
+    </button>
+    <button *ngIf="lang == 'en'" ion-button block (click)="goToReserve(car.quantity)">
+      <span [hidden]="type == 'a'">Reserve now</span>
+      <span [hidden]="type != 'a'">Buy Now</span>
+    </button>
+  </ion-toolbar>
+</ion-footer>

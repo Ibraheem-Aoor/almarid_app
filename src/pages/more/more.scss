@@ -1,0 +1,40 @@
+page-more {
+
+  .content,.toolbar-background {
+    background-color: #0f0a3c !important;
+  }
+
+  .content {
+    color: #ffffff;
+    border-radius: 20px;
+  }
+  ion-col button {
+    display: block;
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 100% !important;
+    margin: 0 auto !important;
+    background-color: #e0533a !important;
+    font-size: 27px !important;
+  }
+  ion-col button ion-icon {
+    font-size: 35px !important;
+  }
+  ion-col p {
+    text-align: center;
+    font-size: 13px;
+  }
+
+  ion-col button img{
+    width: 70%;
+  }
+  .cancel {
+    color: #fff;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .select-btn-ar .button-inner , .select-btn-en .button-inner {
+    width: 35px !important;
+    margin: 0 auto !important;
+  }
+  
+}

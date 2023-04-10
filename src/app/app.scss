@@ -1,0 +1,164 @@
+// http://ionicframework.com/docs/theming/
+
+body,
+div,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ion-col,
+button {
+  font-family: "Cairo";
+}
+
+/* iphone X */
+// @media only screen 
+// and (min-width: 375px) 
+// and (max-height: 812px) 
+// and (-webkit-device-pixel-ratio: 3) { 
+   
+    // body {
+    //     padding-top: constant(safe-area-inset-top) !important; /* iOS 11.0 */
+    //     padding-top: env(safe-area-inset-top) !important; /* iOS 11.2 */
+    //    }
+
+    //    ion-footer {
+    //     margin-bottom: constant(safe-area-inset-bottom) !important; /* iOS 11.0 */
+    //     margin-bottom: env(safe-area-inset-bottom) !important; /* iOS 11.2 */
+    //    }
+    //    ion-navbar ion-buttons,ion-navbar button ,ion-navbar .back-button.show-back-button{
+    //     margin-top: constant(safe-area-inset-top) !important; /* iOS 11.0 */
+    //     margin-top: env(safe-area-inset-top) !important; /* iOS 11.2 */
+    //    }
+
+
+       ion-navbar.toolbar.toolbar-ios.statusbar-padding,
+ion-navbar.toolbar-ios ion-title.title-ios,
+ion-toolbar.toolbar.toolbar-ios.statusbar-padding,
+ion-toolbar.toolbar-ios ion-title.title-ios {
+  padding-top: constant(safe-area-inset-top);
+  padding-top: env(safe-area-inset-top);
+      
+}
+
+ion-navbar{
+  padding-top: constant(safe-area-inset-top);
+  padding-top: env(safe-area-inset-top);
+}
+
+
+
+// }
+
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+}
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+@import "../theme/fonts";
+
+ion-modal {
+  top: 50% !important;
+}
+
+@media screen and (max-height: 670px) {
+  ion-modal {
+    top: 45% !important;
+  }
+}
+
+.gallery-modal {
+  top: 0 !important;
+  background: rgba(0,0,0,0.7);
+}
+ion-modal ion-slides{
+  direction: ltr !important;
+}
+
+// ion-icon.tab-button-icon.icon.icon-md.ion-md-search
+// .toolbar-title {
+//   padding-left: 70px !important;
+// }
+.back-button {
+  position: absolute;
+  z-index: 1000;
+  margin: 0 !important;
+}
+
+.searchbar-ios {
+  border-top: none !important;
+  border-bottom: none !important;
+  background: none !important;
+}
+
+.header-md::after {
+  background-image: none;
+}
+
+.header-ios .toolbar-background-ios {
+  border-color: transparent !important;
+}
+
+.radio-ios .radio-checked .radio-inner {
+  border-color: #fff !important;
+}
+
+ion-radio.radio.radio-ios .radio-inner:before,
+.radio-ios .radio-checked .radio-inner:before {
+  content: none !important;
+}
+
+ion-tabs,ion-tab,.tabbar,.tab-button,.button-effect{
+  overflow: visible !important;
+
+}
+
+.tabbar {
+  background: #fff !important;
+  
+  .tab-button-icon {
+    margin-bottom: -3px;
+  }
+
+	a:nth-of-type(4) {
+    color: #ff5e3a;
+    margin-bottom: -20px !important;
+
+
+  }
+
+  a:nth-of-type(4) .tab-button-icon {
+    width: 61px !important;
+    height: 61px !important;
+    min-height: 61px !important;
+    line-height: 50px !important;
+    color: #fff !important;
+    background-color: #ff5e3a !important;
+    border-radius: 50% !important;
+    position: fixed !important;
+    bottom: calc(env(safe-area-inset-bottom) + 30px) !important;
+    font-size: 35px !important;
+    transform: rotateY(180deg) !important;
+    border: 6px solid #f6f7f9 !important;
+    z-index: 55555555555;
+  }
+
+}

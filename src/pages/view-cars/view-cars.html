@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf="lang == 'ar'" text-center [hidden]="tp =='a'">السيارات</ion-title>
+    <ion-title *ngIf="lang == 'en'" text-center [hidden]="tp =='a'">Cars</ion-title>
+    <ion-title *ngIf="lang == 'ar'" text-center [hidden]="tp !='a'">الاكسسوارات</ion-title>
+    <ion-title *ngIf="lang == 'en'" text-center [hidden]="tp !='a'">Accessories</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- cars -->
+  <div [class]="lang == 'ar' ? 'card card-ar' : 'card card-en'" *ngFor="let car of cars"
+    (click)="goToDetails(car.id, car.image)" [hidden]="tp == 'a'">
+    <div class="img">
+      <img src="{{ car.image }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+    </div>
+    <div class="text">
+      <p class="model">
+        {{ car.model_name }}
+      </p>
+      <p *ngIf="lang == 'ar'" class="type">
+        {{ car.name }}
+      </p>
+      <p *ngIf="lang == 'en'" class="type">
+        {{ car.name_en }}
+      </p>
+      <p *ngIf="car.is_offer" class="price">
+        <span class="discount">{{car.price}}
+          <!--<span class="coin">{{coin}}</span> --></span>
+        {{car.offer_price}} <span class="coin">{{coin}}</span>
+      </p>
+      <p *ngIf="!car.is_offer" class="price">
+        {{car.price}} <span class="coin">{{coin}}</span>
+      </p>
+      <p *ngIf="lang === 'ar'" class="count">
+        <span *ngIf="car.quantity !== '0'">متبقي {{ car.quantity }} سيارات</span>
+        <span *ngIf="car.quantity === '0'">نفذت الكمية</span>
+      </p>
+      <p *ngIf="lang === 'en'" class="count">
+        <span *ngIf="car.quantity !== '0'">remains {{ car.quantity }} cars</span>
+        <span *ngIf="car.quantity === '0'">Out of Stock</span>
+      </p>
+    </div>
+    <span *ngIf="lang == 'ar' && car.is_offer" class="flag">عرض</span>
+    <span *ngIf="lang == 'en' && car.is_offer" class="flag">offer</span>
+    <span *ngIf="lang == 'ar' && car.is_new" class="flag" style="background-color: #0f0a3c;">
+      جديد
+    </span>
+    <span *ngIf="lang == 'en' && car.is_new" class="flag" style="background-color: #0f0a3c;">
+      new
+    </span>
+  </div>
+  <!-- accessories -->
+  <div [class]="lang == 'ar' ? 'card card-ar' : 'card card-en'" *ngFor="let car of accessories"
+    (click)="goToDetails(car.id, car.image)" [hidden]="tp != 'a'">
+    <div class="img">
+      <img src="{{ car.image }}" onerror="this.onerror=null;this.src='assets/imgs/logo.png';" />
+    </div>
+    <div class="text">
+      <p *ngIf="lang == 'ar'" class="type">
+        {{ car.name }}
+      </p>
+      <p *ngIf="lang == 'en'" class="type">
+        {{ car.name_en }}
+      </p>
+      <p *ngIf="car.is_offer" class="price">
+        <span class="discount">{{car.price}}
+          <!--<span class="coin">{{coin}}</span> --></span>
+        {{car.offer_price}} <span class="coin">{{coin}}</span>
+      </p>
+      <p *ngIf="!car.is_offer" class="price">
+        {{car.price}} <span class="coin">{{coin}}</span>
+      </p>
+      <p *ngIf="lang === 'ar'" class="count">
+        <span *ngIf="car.quantity !== '0'">متبقي {{ car.quantity }} قطع</span>
+        <span *ngIf="car.quantity === '0'">نفذت الكمية</span>
+      </p>
+      <p *ngIf="lang === 'en'" class="count">
+        <span *ngIf="car.quantity !== '0'">remains {{ car.quantity }} pieces</span>
+        <span *ngIf="car.quantity === '0'">Out of Stock</span>
+      </p>
+    </div>
+    <span *ngIf="lang == 'ar' && car.is_offer" class="flag">عرض</span>
+    <span *ngIf="lang == 'en' && car.is_offer" class="flag">offer</span>
+    <span *ngIf="lang == 'ar' && car.is_new" class="flag" style="background-color: #0f0a3c;">
+      جديد
+    </span>
+    <span *ngIf="lang == 'en' && car.is_new" class="flag" style="background-color: #0f0a3c;">
+      new
+    </span>
+  </div>
+  <!-- If there is no cars -->
+  <div *ngIf="showSorry" class="no-car" Text-center>
+    <ion-icon name="alert"></ion-icon>
+    <h2 *ngIf="lang == 'ar'">نأسف!</h2>
+    <h2 *ngIf="lang == 'en'">Sorry!</h2>
+    <p *ngIf="lang == 'ar'" [hidden]="tp == 'a'">
+      لا يوجد سيارات بهذا النوع
+    </p>
+    <p *ngIf="lang == 'en'" [hidden]="tp == 'a'">
+      There is no cars with this type
+    </p>
+    <p *ngIf="lang == 'ar'" [hidden]="tp != 'a'">
+      لا يوجد اكسسوارات بهذا النوع
+    </p>
+    <p *ngIf="lang == 'en'" [hidden]="tp != 'a'">
+      There is no Accessories with this type
+    </p>
+  </div>
+</ion-content>

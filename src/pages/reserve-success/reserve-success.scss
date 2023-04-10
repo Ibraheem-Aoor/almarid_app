@@ -1,0 +1,43 @@
+page-reserve-success {
+  .status {
+    margin: 70px 0px 20px 0px;
+  }
+  .status .ico {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    background-color: #04d68e;
+    line-height: 72px;
+    border-radius: 50%;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+  }
+
+  .img {
+    text-align: center;
+    padding: 30px 0px;
+  }
+
+  .text {
+    text-align: center;
+  }
+
+  .text .number {
+    font-size: 25px;
+  }
+
+  p {
+    text-align: center;
+    margin: 0;
+  }
+
+  .btns button {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+
+  .follow {
+    background-color: #ff5e3a;
+  }
+}

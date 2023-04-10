@@ -1,0 +1,39 @@
+<ion-content padding>
+  <div class="text">
+    <h3 class="ar">اختر القسم</h3>
+    <h3 class="en">choose your section</h3>
+  </div>
+  <div class="lang">
+    <div class="ar">
+      <button ion-button block (click)="chooseSection('c')">
+        <span *ngIf="lang == 'ar'">
+           السيارات
+        </span>
+        <span *ngIf="lang == 'en'">
+          Cars
+        </span>
+    </button>
+    </div>
+
+    <div class="en">
+      <button ion-button block (click)="chooseSection('a')">
+        <span *ngIf="lang == 'ar'">
+         الاكسسوارات
+        </span>
+        <span *ngIf="lang == 'en'">
+          Accessories
+        </span>
+      </button>
+    </div>
+  </div>
+  <div class="btn-ar" *ngIf="lang == 'ar'">
+    <button ion-button block outline class="cancel" (click)="dismiss()">
+      إلغاء
+    </button>
+  </div>
+  <div class="btn-en" *ngIf="lang == 'en'">
+    <button ion-button block outline class="cancel" (click)="dismiss()">
+      Cancel
+    </button>
+  </div>
+</ion-content>
